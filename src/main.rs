@@ -4,7 +4,7 @@ fn calc_mandle(
     x_min: f64,
     x_max: f64,
     y_min: f64,
-    y_max: f64,
+    y_max: f64, // {x_min, y_min , x_max , y_max } define the bounding box
     width: usize,
     height: usize,
 ) -> Vec<Vec<usize>> {
@@ -27,9 +27,10 @@ fn calc_mandle(
 fn mandle_at_point(cx: f64, cy: f64, max_iters: usize) -> usize {
     // this is calculated for every character encountered
     let mut z = Complex::new(0.0, 0.0);
-    let c = Complex::new(cx, cy);
+    let c = Complex::new(cx, cy); //representing the pixels as complex number
     for i in 0..=max_iters {
         if z.norm() > 2.0 {
+            // if Euclidean Norm is greater than 2
             return i;
         }
         z = z * z + c;
@@ -58,7 +59,7 @@ fn render_mandle(escape_vals: Vec<Vec<usize>>) {
     }
 }
 fn main() {
-    let m = calc_mandle(400, -2.0, 1.0, -1.0, 1.0, 180, 40);
+    let m = calc_mandle(10000, -2.0, 1.0, -1.0, 1.0, 200, 100);
     render_mandle(m);
     println!("Hello, TUX!🐧🐧🐧🐧🐧🐧🐧🐧🐧🐧🐧🐧🐧🐧");
 }
