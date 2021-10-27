@@ -25,7 +25,8 @@ fn calc_mandle(
 }
 
 fn mandle_at_point(cx: f64, cy: f64, max_iters: usize) -> usize {
-    let mut z = Complex { re: 0.0, im: 0.0 };
+    // this is calculated for every character encountered
+    let mut z = Complex::new(0.0, 0.0);
     let c = Complex::new(cx, cy);
     for i in 0..=max_iters {
         if z.norm() > 2.0 {
@@ -36,6 +37,7 @@ fn mandle_at_point(cx: f64, cy: f64, max_iters: usize) -> usize {
     max_iters
 }
 fn render_mandle(escape_vals: Vec<Vec<usize>>) {
+    // I really can't spell
     for row in escape_vals {
         let mut line = String::with_capacity(row.len());
         for column in row {
@@ -56,7 +58,7 @@ fn render_mandle(escape_vals: Vec<Vec<usize>>) {
     }
 }
 fn main() {
-    let m = calc_mandle(400, -2.0, 1.0, -1.0, 1.0, 100, 24);
+    let m = calc_mandle(400, -2.0, 1.0, -1.0, 1.0, 180, 40);
     render_mandle(m);
     println!("Hello, TUX!🐧🐧🐧🐧🐧🐧🐧🐧🐧🐧🐧🐧🐧🐧");
 }
