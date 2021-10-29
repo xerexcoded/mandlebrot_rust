@@ -1,3 +1,4 @@
+// This is cool visual of a fractal , we are fractals too !!
 use num::complex::Complex;
 fn calc_mandle(
     max_iters: usize,
